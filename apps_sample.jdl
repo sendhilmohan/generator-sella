@@ -1,0 +1,38 @@
+application {
+  config {
+    baseName gateway,
+    packageName com.sella.app.gateway,
+    applicationType gateway,
+	authenticationType jwt,
+	databaseType sql,
+    prodDatabaseType oracle,
+	devDatabaseType oracle,
+	clientFramework angularX,
+	serviceDiscoveryType eureka
+  }
+  entities Employee
+}
+
+application {
+  config {
+    baseName employer,
+    packageName com.sella.app.employer,
+    applicationType microservice,
+    authenticationType jwt,
+    databaseType sql,
+	prodDatabaseType oracle,
+    devDatabaseType oracle,
+	serverPort 8085,
+    serviceDiscoveryType eureka
+  }
+  entities Employee
+}
+
+entity Employee {
+  name String required minlength(3),
+  exp String required minlength(2)
+}
+
+paginate Employee with pagination
+
+microservice Employee with employer
